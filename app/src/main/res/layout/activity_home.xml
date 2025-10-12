@@ -63,42 +63,48 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="Ir a Perfil (resultado)"/>
+                    android:text="Ir a Perfil (resultado)"
+                    android:backgroundTint="@color/black"/>
 
                 <Button
                     android:id="@+id/btnAbrirWeb"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:text="Abrir sitio web"/>
+                    android:text="Abrir sitio web"
+                    android:backgroundTint="@color/black"/>
 
                 <Button
                     android:id="@+id/btnEnviarCorreo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:text="Enviar correo"/>
+                    android:text="Enviar correo"
+                    android:backgroundTint="@color/black"/>
 
                 <Button
                     android:id="@+id/btnCompartir"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:text="Compartir texto"/>
+                    android:text="Compartir texto"
+                    android:backgroundTint="@color/black"/>
 
                 <Button
                     android:id="@+id/btnLinterna"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:text="Linterna ON/OFF" />
+                    android:text="Linterna ON/OFF"
+                    android:backgroundTint="@color/black"/>
 
                 <Button
                     android:id="@+id/btnCamara"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Abrir Cámara"
-                    android:layout_marginTop="12dp"/>
+                    android:layout_marginTop="12dp"
+                    android:backgroundTint="@color/black"/>
 
             </LinearLayout>
         </LinearLayout>
