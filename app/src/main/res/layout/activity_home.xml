@@ -55,7 +55,8 @@
                     android:text="Bienvenido:"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    android:textColor="@color/text_main"/>
+                    android:textColor="@color/text_main"
+                    android:textAlignment="center"/>
 
                 <!-- Contraseña oculta -->
                 <TextView

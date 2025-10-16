@@ -19,7 +19,7 @@ public class FormActivity extends AppCompatActivity {
     private EditText etData;
     private Button btnSend;
 
-    // Launcher para abrir ConfirmActivity y recibir resultado
+    //Launcher para abrir ConfirmActivity y recibir resultado
     private ActivityResultLauncher<Intent> confirmLauncher =
             registerForActivityResult(
                     new ActivityResultContracts.StartActivityForResult(),
@@ -50,28 +50,40 @@ public class FormActivity extends AppCompatActivity {
 
         etData = findViewById(R.id.etData);
         Button btnEnviarFormulario = findViewById(R.id.btnEnviarFormulario);
+        Button btnFormularioVolver = findViewById(R.id.btnFormularioVolver);
 
+        //Enviar formulario con animación al abrir ConfirmActivity
         btnEnviarFormulario.setOnClickListener(v -> {
             String text = etData.getText().toString().trim();
 
-            // 🔹 Validación: campo obligatorio
+            //Validación: campo obligatorio
             if (TextUtils.isEmpty(text)) {
                 etData.setError("Este campo no puede estar vacío");
                 etData.requestFocus();
-                return; // no continúa si está vacío
+                return;
             }
 
-            // Si pasa la validación, lanza ConfirmActivity
+            //Si pasa la validación, lanza ConfirmActivity
             Intent intent = new Intent(FormActivity.this, ConfirmActivity.class);
             intent.putExtra("form_data", text);
             confirmLauncher.launch(intent);
+
+            //Transición personalizada
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
         });
 
         //Botón para volver al menú principal
-        Button btnFormularioVolver = findViewById(R.id.btnFormularioVolver);
         btnFormularioVolver.setOnClickListener(v -> {
             finish();
+            //Transición personalizada
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
         });
     }
-}
 
+    //Transición botón físico “Atrás”
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+    }
+}
