@@ -57,6 +57,22 @@
                     android:textStyle="bold"
                     android:textColor="@color/text_main"/>
 
+                <!-- Contraseña oculta -->
+                <TextView
+                    android:id="@+id/tvContrasenaHome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:visibility="gone"/>
+
+                <!-- Correo oculto -->
+                <TextView
+                    android:id="@+id/tvNombreHome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:visibility="gone"/>
+
                 <!-- Botones -->
                 <Button
                     android:id="@+id/btnIrPerfil"

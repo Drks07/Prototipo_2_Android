@@ -34,8 +34,8 @@ import java.nio.BufferUnderflowException;
 public class HomeActivity extends AppCompatActivity {
 
     // Variables
-    private String emailUsuario = "";
-    private TextView tvBienvenida;
+    private String emailUsuario, contrasenaUsuario, nombreUsuario = "";
+    private TextView tvBienvenida, tvContrasenaHome, tvNombreHome;
 
     //VARIABLES PARA LA CAMARA
     private Button btnLinterna;
@@ -45,11 +45,15 @@ public class HomeActivity extends AppCompatActivity {
 
     // Activity Result (para recibir datos de PerfilActivity)
     private final ActivityResultLauncher<Intent> editarPerfilLauncher =
-            registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
-                if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+            registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result ->{
+                if (result.getResultCode() == RESULT_OK && result.getData() != null){
                     String nombre = result.getData().getStringExtra("nombre_editado");
-                    if (nombre != null) {
+                    String contra = result.getData().getStringExtra("contraseña_editada");
+                    String user = result.getData().getStringExtra("username_editado");
+                    if (nombre != null && contra != null && user != null){
                         tvBienvenida.setText("Hola, " + nombre);
+                        tvContrasenaHome.setText(contra);
+                        tvNombreHome.setText(user);
                     }
                 }
             });
@@ -75,6 +79,8 @@ public class HomeActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         //Referencias
+        tvNombreHome = findViewById(R.id.tvNombreHome);
+        tvContrasenaHome = findViewById(R.id.tvContrasenaHome);
         tvBienvenida = findViewById(R.id.tvBienvenida);
         Button btnIrPerfil = findViewById(R.id.btnIrPerfil);
         Button btnAbrirWeb = findViewById(R.id.btnAbrirWeb);
@@ -88,14 +94,21 @@ public class HomeActivity extends AppCompatActivity {
 
         // Recibir dato del Login
         emailUsuario = getIntent().getStringExtra("email_usuario");
-        if (emailUsuario == null) emailUsuario = "";
+        contrasenaUsuario = getIntent().getStringExtra("contrasena_usuario");
+        nombreUsuario = getIntent().getStringExtra("nombre_usuario");
+        if (emailUsuario == null ) emailUsuario = ""; //if mas corto
         tvBienvenida.setText("Bienvenido: " + emailUsuario);
+        tvContrasenaHome.setText(contrasenaUsuario);
+        tvNombreHome.setText(nombreUsuario);
 
-        // Evento: Intent explícito → ProfileActivity (esperando resultado)
-        btnIrPerfil.setOnClickListener(v -> {
-            Intent i = new Intent(HomeActivity.this, PerfilActivity.class);
-            i.putExtra("email_usuario", emailUsuario);
-            editarPerfilLauncher.launch(i);
+
+        //Evento Explicito iniciar vista perfil
+        btnIrPerfil.setOnClickListener(View -> { //puede ir solo la v envez de View
+            Intent perfil = new Intent(HomeActivity.this, PerfilActivity.class); //Donde estoy y hacia donde quiero ir
+            perfil.putExtra("email_usuario", emailUsuario);
+            perfil.putExtra("contrasena_usuario", contrasenaUsuario);
+            perfil.putExtra("nombre_usuario", nombreUsuario);
+            editarPerfilLauncher.launch(perfil);
         });
 
         // Evento: Intent Explicito para inicializar ContactoActivity

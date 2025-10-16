@@ -42,6 +42,7 @@ public class LoginActivity extends AppCompatActivity {
     private void intentoInicioSesion() {
         String email = edtEmail.getText() != null ? edtEmail.getText().toString().trim() : "";
         String pass  = edtPass.getText()  != null ? edtPass.getText().toString() : "";
+        String username = "Fernando";
 
         if (TextUtils.isEmpty(email)) {
             edtEmail.setError("Ingresa tu correo");
@@ -74,6 +75,8 @@ public class LoginActivity extends AppCompatActivity {
 
             // Enviamos el email al Home
             intent.putExtra("email_usuario", email);
+            intent.putExtra("contrasena_usuario", pass);
+            intent.putExtra("nombre_usuario", username);
             startActivity(intent);
 
             // Cerrar la pantalla de login para que no vuelva atrás con "Back"
