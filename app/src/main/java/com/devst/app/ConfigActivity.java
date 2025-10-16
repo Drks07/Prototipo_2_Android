@@ -1,10 +1,15 @@
 package com.devst.app;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.widget.Toolbar;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
+import android.provider.Settings;
+import android.widget.Button;
+
 import androidx.core.content.ContextCompat;
 
 public class ConfigActivity extends AppCompatActivity {
@@ -17,9 +22,12 @@ public class ConfigActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbarConfig);
         setSupportActionBar(toolbar);
 
+        //Refrencias
+        Button btnConfiguracionWifi = findViewById(R.id.btnConfiguracionWifi);
+
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setTitle("Ajustes");
+            getSupportActionBar().setTitle("Atras");
         }
 
         //Cambiar color del texto del título
@@ -34,5 +42,11 @@ public class ConfigActivity extends AppCompatActivity {
 
         //Acción del botón atrás
         toolbar.setNavigationOnClickListener(v -> onBackPressed());
+
+        //Evento implicito para abrir Configuracion (WIFI)
+        btnConfiguracionWifi.setOnClickListener(v -> {
+            Intent wifiSettings = new Intent(Settings.ACTION_WIFI_SETTINGS);
+            startActivity(wifiSettings);
+        });
     }
 }

@@ -83,7 +83,6 @@ public class HomeActivity extends AppCompatActivity {
         btnLinterna = findViewById(R.id.btnLinterna);
         Button btnCamara = findViewById(R.id.btnCamara);
         Button btnUbicacion = findViewById(R.id.btnUbicacion);
-        Button btnConfiguracion = findViewById(R.id.btnConfiguracion);
         Button btnVerContactos = findViewById(R.id.btnVerContactos);
         Button btnConfiguracionInterna = findViewById(R.id.btnConfiguracionInterna);
 
@@ -136,12 +135,6 @@ public class HomeActivity extends AppCompatActivity {
             Intent mapIntent = new Intent(Intent.ACTION_VIEW, ubicacion);
             mapIntent.setPackage("com.google.android.apps.maps");
             startActivity(mapIntent);
-        });
-
-        //Evento implicito para abrir Configuracion (WIFI)
-        btnConfiguracion.setOnClickListener(v -> {
-            Intent wifiSettings = new Intent(Settings.ACTION_WIFI_SETTINGS);
-            startActivity(wifiSettings);
         });
 
         //Evento explicito para inicializar la configuracion interna

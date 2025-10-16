@@ -34,10 +34,19 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Pantalla de ajustes interna"
+            android:text="Seleccione una Opcion"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:paddingTop="16dp" />
+            android:paddingTop="16dp"
+            android:textAlignment="center"/>
+
+        <Button
+            android:id="@+id/btnConfiguracionWifi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Configurar Wifi"
+            android:layout_marginTop="12dp"
+            android:backgroundTint="@color/black"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
