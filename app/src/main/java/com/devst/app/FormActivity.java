@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.text.TextUtils;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
@@ -51,16 +52,19 @@ public class FormActivity extends AppCompatActivity {
         Button btnEnviarFormulario = findViewById(R.id.btnEnviarFormulario);
 
         btnEnviarFormulario.setOnClickListener(v -> {
-            String text = etData.getText().toString();
+            String text = etData.getText().toString().trim();
+
+            // 🔹 Validación: campo obligatorio
+            if (TextUtils.isEmpty(text)) {
+                etData.setError("Este campo no puede estar vacío");
+                etData.requestFocus();
+                return; // no continúa si está vacío
+            }
+
+            // Si pasa la validación, lanza ConfirmActivity
             Intent intent = new Intent(FormActivity.this, ConfirmActivity.class);
             intent.putExtra("form_data", text);
             confirmLauncher.launch(intent);
-        });
-
-        // Botón para volver al menú principal
-        Button btnFormularioVolver = findViewById(R.id.btnFormularioVolver);
-        btnFormularioVolver.setOnClickListener(v -> {
-            finish();
         });
     }
 }
