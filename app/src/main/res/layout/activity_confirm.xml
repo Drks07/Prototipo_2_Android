@@ -1,12 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    android:background="@color/app_bg"
-    tools:context=".ContactoActivity">
+    android:background="@color/app_bg">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,10 +14,10 @@
 
         <!-- TextView del Titulo de la vista-->
         <TextView
-            android:id="@+id/tvContactoTitulo"
+            android:id="@+id/tvDatosFormulario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Datos del Contacto"
+            android:text="Datos Formulario"
             android:textSize="22sp"
             android:textStyle="bold"
             android:textColor="@color/black"
@@ -27,9 +25,7 @@
             android:padding="8dp"
             android:layout_marginBottom="16dp"/>
 
-        <!-- LinearLayout para mostrar el nombre del contacto -->
         <LinearLayout
-            android:id="@+id/nombreContacto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -41,61 +37,26 @@
             android:layout_marginStart="15dp"
             android:layout_marginEnd="15dp">
 
-            <!-- Nombre del Contacto -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nombre: "
+                android:text="Dato recibido: "
                 android:textSize="15sp"
                 android:textStyle="bold"
                 android:textColor="@color/brand_primary"
                 android:padding="5dp"/>
 
+            <!-- Dato ingresado -->
             <TextView
-                android:id="@+id/tvNombreContacto"
+                android:id="@+id/tvReceived"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text=""
+                android:text="Aqui se mostrara el dato"
                 android:textSize="16sp"
                 android:textColor="@color/black"
                 android:padding="5dp"/>
         </LinearLayout>
 
-        <!-- LinearLayout para mostrar el numero del contacto -->
-        <LinearLayout
-            android:id="@+id/numeroContacto"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="12dp"
-            android:elevation="6dp"
-            android:background="@drawable/bg_card"
-            android:backgroundTint="@color/white"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp">
-
-            <!-- Numero del Contacto -->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Numero Telefónico: "
-                android:textSize="15sp"
-                android:textStyle="bold"
-                android:textColor="@color/brand_primary"
-                android:padding="5dp"/>
-
-            <TextView
-                android:id="@+id/tvNumeroContacto"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textSize="16sp"
-                android:textColor="@color/black"
-                android:padding="5dp"/>
-        </LinearLayout>
-
-        <!-- LinearLayout con el boton para seleccionar un contacto -->
         <LinearLayout
             android:id="@+id/btnContacto"
             android:layout_width="match_parent"
@@ -108,12 +69,13 @@
             android:layout_marginEnd="21dp"
             android:gravity="bottom">
 
-            <!-- Boton seleccionar contacto -->
+
+            <!-- Confirmar -->
             <Button
-                android:id="@+id/btnSeleccionarContacto"
+                android:id="@+id/btnConfirm"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Seleccionar Contacto"
+                android:text="Confirmar"
                 android:backgroundTint="@color/black"
                 android:textStyle="bold"
                 android:textSize="18sp"
@@ -121,19 +83,23 @@
                 android:paddingBottom="14dp"
                 android:layout_marginTop="20dp"/>
 
-            <!-- Boton para volver al menu -->
+            <!-- Cancelar -->
             <Button
-                android:id="@+id/btnContactoVolver"
+                android:id="@+id/btnCancel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Volver al inicio"
+                android:text="Cancelar"
                 android:backgroundTint="@color/black"
                 android:textStyle="bold"
                 android:textSize="18sp"
                 android:paddingTop="14dp"
                 android:paddingBottom="14dp"
                 android:layout_marginTop="20dp"/>
+
+
         </LinearLayout>
-    </LinearLayout>
-</ScrollView>
 
+    </LinearLayout>
+
+
+</ScrollView>

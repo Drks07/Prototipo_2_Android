@@ -82,6 +82,7 @@ public class HomeActivity extends AppCompatActivity {
         Button btnUbicacion = findViewById(R.id.btnUbicacion);
         Button btnVerContactos = findViewById(R.id.btnVerContactos);
         Button btnConfiguracionInterna = findViewById(R.id.btnConfiguracionInterna);
+        Button btnFormulario = findViewById(R.id.btnFormulario);
 
         //Recibir datos del Login
         emailUsuario = getIntent().getStringExtra("email_usuario");
@@ -106,6 +107,13 @@ public class HomeActivity extends AppCompatActivity {
         btnVerContactos.setOnClickListener(v -> {
             Intent contacto = new Intent(HomeActivity.this, ContactoActivity.class);
             startActivity(contacto);
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+        });
+
+        //Evento explícito → FormActivity
+        btnFormulario.setOnClickListener(v -> {
+            Intent formulario = new Intent(HomeActivity.this, FormActivity.class);
+            startActivity(formulario);
             overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
         });
 
