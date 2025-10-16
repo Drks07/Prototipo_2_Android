@@ -100,8 +100,8 @@ public class HomeActivity extends AppCompatActivity {
 
         // Evento: Intent Explicito para inicializar ContactoActivity
         btnVerContactos.setOnClickListener(v -> {
-            Intent intent = new Intent(HomeActivity.this, ContactoActivity.class);
-            startActivity(intent);
+            Intent Contacto = new Intent(HomeActivity.this, ContactoActivity.class);
+            startActivity(Contacto);
         });
 
         // Evento: Intent implícito → abrir web
