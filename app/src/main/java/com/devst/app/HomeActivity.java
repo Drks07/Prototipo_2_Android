@@ -252,7 +252,7 @@ public class HomeActivity extends AppCompatActivity {
             startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://developer.android.com")));
             return true;
         } else if (id == R.id.action_salir) {
-            finishWithAnimation(); // ✅ Aplica animación también al salir desde el menú
+            finishWithAnimation();
             return true;
         }
         return super.onOptionsItemSelected(item);

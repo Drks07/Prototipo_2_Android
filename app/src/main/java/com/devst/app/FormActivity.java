@@ -66,6 +66,12 @@ public class FormActivity extends AppCompatActivity {
             intent.putExtra("form_data", text);
             confirmLauncher.launch(intent);
         });
+
+        // Botón para volver al menú principal
+        Button btnFormularioVolver = findViewById(R.id.btnFormularioVolver);
+        btnFormularioVolver.setOnClickListener(v -> {
+            finish();
+        });
     }
 }
 
