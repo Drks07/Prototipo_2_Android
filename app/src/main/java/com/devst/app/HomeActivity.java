@@ -106,7 +106,7 @@ public class HomeActivity extends AppCompatActivity {
             email.setData(Uri.parse("mailto:")); // Solo apps de correo
             email.putExtra(Intent.EXTRA_EMAIL, new String[]{emailUsuario});
             email.putExtra(Intent.EXTRA_SUBJECT, "Prueba desde la app");
-            email.putExtra(Intent.EXTRA_TEXT, "Hola, esto es un intento de correo.");
+            email.putExtra(Intent.EXTRA_TEXT, "Hola, esto es un intento de correo. Actividad 15% Felipe Mellado, Daniel Quiroz.");
             startActivity(Intent.createChooser(email, "Enviar correo con:"));
         });
 
