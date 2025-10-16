@@ -28,6 +28,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.nio.BufferUnderflowException;
+
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -83,6 +85,7 @@ public class HomeActivity extends AppCompatActivity {
         Button btnUbicacion = findViewById(R.id.btnUbicacion);
         Button btnConfiguracion = findViewById(R.id.btnConfiguracion);
         Button btnVerContactos = findViewById(R.id.btnVerContactos);
+        Button btnConfiguracionInterna = findViewById(R.id.btnConfiguracionInterna);
 
         // Recibir dato del Login
         emailUsuario = getIntent().getStringExtra("email_usuario");
@@ -139,6 +142,12 @@ public class HomeActivity extends AppCompatActivity {
         btnConfiguracion.setOnClickListener(v -> {
             Intent wifiSettings = new Intent(Settings.ACTION_WIFI_SETTINGS);
             startActivity(wifiSettings);
+        });
+
+        //Evento explicito para inicializar la configuracion interna
+        btnConfiguracionInterna.setOnClickListener(v -> {
+            Intent configuracionInterna = new Intent(HomeActivity.this, ConfigActivity.class);
+            startActivity(configuracionInterna);
         });
 
         //Linterna Inicializamos la camara
