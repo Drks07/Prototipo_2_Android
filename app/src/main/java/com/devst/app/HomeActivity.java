@@ -82,6 +82,7 @@ public class HomeActivity extends AppCompatActivity {
         Button btnCamara = findViewById(R.id.btnCamara);
         Button btnUbicacion = findViewById(R.id.btnUbicacion);
         Button btnConfiguracion = findViewById(R.id.btnConfiguracion);
+        Button btnVerContactos = findViewById(R.id.btnVerContactos);
 
         // Recibir dato del Login
         emailUsuario = getIntent().getStringExtra("email_usuario");
@@ -93,6 +94,12 @@ public class HomeActivity extends AppCompatActivity {
             Intent i = new Intent(HomeActivity.this, PerfilActivity.class);
             i.putExtra("email_usuario", emailUsuario);
             editarPerfilLauncher.launch(i);
+        });
+
+        // Evento: Intent Explicito para inicializar ContactoActivity
+        btnVerContactos.setOnClickListener(v -> {
+            Intent intent = new Intent(HomeActivity.this, ContactoActivity.class);
+            startActivity(intent);
         });
 
         // Evento: Intent implícito → abrir web

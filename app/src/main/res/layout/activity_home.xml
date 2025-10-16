@@ -122,6 +122,14 @@
                     android:layout_marginTop="12dp"
                     android:backgroundTint="@color/black"/>
 
+                <Button
+                    android:id="@+id/btnVerContactos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Ver datos del Contacto"
+                    android:layout_marginTop="12dp"
+                    android:backgroundTint="@color/black"/>
+
             </LinearLayout>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

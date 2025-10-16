@@ -6,6 +6,8 @@
     <uses-feature
         android:name="android.hardware.camera.flash"
         android:required="false" />
+    <!-- Permiso para los contactos -->
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
 
     <application
         android:allowBackup="true"
@@ -24,6 +26,9 @@
             android:exported="false" />
         <activity
             android:name=".HomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ContactoActivity"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
