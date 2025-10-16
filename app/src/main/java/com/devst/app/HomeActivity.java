@@ -95,7 +95,7 @@ public class HomeActivity extends AppCompatActivity {
 
         // Evento: Intent implícito → abrir web
         btnAbrirWeb.setOnClickListener(v -> {
-            Uri uri = Uri.parse("https://github.com/Drks07/Prototipo_2_Android/tree/intents");
+            Uri uri = Uri.parse("https://git-scm.com/");
             Intent viewWeb = new Intent(Intent.ACTION_VIEW, uri);
             startActivity(viewWeb);
         });
