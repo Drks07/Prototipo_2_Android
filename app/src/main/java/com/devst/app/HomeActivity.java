@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -78,6 +79,7 @@ public class HomeActivity extends AppCompatActivity {
         Button btnCompartir = findViewById(R.id.btnCompartir);
         btnLinterna = findViewById(R.id.btnLinterna);
         Button btnCamara = findViewById(R.id.btnCamara);
+        Button btnUbicacion = findViewById(R.id.btnUbicacion);
 
         // Recibir dato del Login
         emailUsuario = getIntent().getStringExtra("email_usuario");
@@ -114,6 +116,14 @@ public class HomeActivity extends AppCompatActivity {
             share.setType("text/plain");
             share.putExtra(Intent.EXTRA_TEXT, "Hola desde mi app Android 😎");
             startActivity(Intent.createChooser(share, "Compartir usando:"));
+        });
+
+        //Evento implicito para ver Ubicacion (Abre otra APP)
+        btnUbicacion.setOnClickListener(v -> {
+            Uri ubicacion = Uri.parse("geo:-33.452922,-70.662307?q=" + Uri.encode("Vergara 165, 8370014 Santiago, Región Metropolitana"));
+            Intent mapIntent = new Intent(Intent.ACTION_VIEW, ubicacion);
+            mapIntent.setPackage("com.google.android.apps.maps");
+            startActivity(mapIntent);
         });
 
 
