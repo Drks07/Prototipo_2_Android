@@ -114,6 +114,14 @@
                     android:layout_marginTop="12dp"
                     android:backgroundTint="@color/black"/>
 
+                <Button
+                    android:id="@+id/btnConfiguracion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Abrir Configuracion"
+                    android:layout_marginTop="12dp"
+                    android:backgroundTint="@color/black"/>
+
             </LinearLayout>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

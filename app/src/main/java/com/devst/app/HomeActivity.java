@@ -8,6 +8,7 @@ import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraCharacteristics;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -80,6 +81,7 @@ public class HomeActivity extends AppCompatActivity {
         btnLinterna = findViewById(R.id.btnLinterna);
         Button btnCamara = findViewById(R.id.btnCamara);
         Button btnUbicacion = findViewById(R.id.btnUbicacion);
+        Button btnConfiguracion = findViewById(R.id.btnConfiguracion);
 
         // Recibir dato del Login
         emailUsuario = getIntent().getStringExtra("email_usuario");
@@ -118,7 +120,7 @@ public class HomeActivity extends AppCompatActivity {
             startActivity(Intent.createChooser(share, "Compartir usando:"));
         });
 
-        //Evento implicito para ver Ubicacion (Abre otra APP)
+        //Evento implicito para ver Ubicacion (Abre la App Maps)
         btnUbicacion.setOnClickListener(v -> {
             Uri ubicacion = Uri.parse("geo:-33.452922,-70.662307?q=" + Uri.encode("Vergara 165, 8370014 Santiago, Región Metropolitana"));
             Intent mapIntent = new Intent(Intent.ACTION_VIEW, ubicacion);
@@ -126,6 +128,11 @@ public class HomeActivity extends AppCompatActivity {
             startActivity(mapIntent);
         });
 
+        //Evento implicito para abrir Configuracion (WIFI)
+        btnConfiguracion.setOnClickListener(v -> {
+            Intent wifiSettings = new Intent(Settings.ACTION_WIFI_SETTINGS);
+            startActivity(wifiSettings);
+        });
 
         //Linterna Inicializamos la camara
 
