@@ -8,10 +8,8 @@ import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraCharacteristics;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,12 +21,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
-
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-
-import java.nio.BufferUnderflowException;
 
 
 public class HomeActivity extends AppCompatActivity {
@@ -109,6 +101,8 @@ public class HomeActivity extends AppCompatActivity {
             perfil.putExtra("contrasena_usuario", contrasenaUsuario);
             perfil.putExtra("nombre_usuario", nombreUsuario);
             editarPerfilLauncher.launch(perfil);
+            //Trancision Personalizada
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
         });
 
         // Evento: Intent Explicito para inicializar ContactoActivity
@@ -150,10 +144,12 @@ public class HomeActivity extends AppCompatActivity {
             startActivity(mapIntent);
         });
 
-        //Evento explicito para inicializar la configuracion interna
+        //Evento explicito para la configuracion interna
         btnConfiguracionInterna.setOnClickListener(v -> {
             Intent configuracionInterna = new Intent(HomeActivity.this, ConfigActivity.class);
             startActivity(configuracionInterna);
+            //Transición personalizada
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
         });
 
         //Linterna Inicializamos la camara

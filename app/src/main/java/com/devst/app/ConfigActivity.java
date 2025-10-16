@@ -41,12 +41,28 @@ public class ConfigActivity extends AppCompatActivity {
         }
 
         //Acción del botón atrás
-        toolbar.setNavigationOnClickListener(v -> onBackPressed());
+        toolbar.setNavigationOnClickListener(v -> {
+            // Cierra la Activity manualmente
+            finish();
+            //Trancision personalizada
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+        });
 
-        //Evento implicito para abrir Configuracion (WIFI)
+        //Evento implicito para abrir Configuracion "Wifi"
         btnConfiguracionWifi.setOnClickListener(v -> {
             Intent wifiSettings = new Intent(Settings.ACTION_WIFI_SETTINGS);
             startActivity(wifiSettings);
+            //Animación de entrada/salida
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
         });
+    }
+
+    //Agrega la animación al volver atrás
+    @Override
+    public void onBackPressed() {
+        // Cierra la Activity
+        finish();
+        //Trancision personalizada
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 }

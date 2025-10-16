@@ -41,6 +41,8 @@ public class PerfilActivity extends AppCompatActivity {
         Button btnPerfilVolver= findViewById(R.id.btnPerfilVolver);
         btnPerfilVolver.setOnClickListener(v -> {
             finish();
+            //Trancision personalizada
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
         });
     }
 }
