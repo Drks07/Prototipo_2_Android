@@ -6,43 +6,54 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class PerfilActivity extends AppCompatActivity {
 
-    //Encapsulamiento
+    // Encapsulamiento
     private TextView tvCorreoPerfil, tvContrasenaPerfil, tvNombrePerfil;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_perfil);
+
+        // Recibir datos
         String emailRecibido = getIntent().getStringExtra("email_usuario");
         String contrasenaRecibido = getIntent().getStringExtra("contrasena_usuario");
         String nombreRecibido = getIntent().getStringExtra("nombre_usuario");
         if (emailRecibido == null) emailRecibido = "";
 
-        //Referencias
+        // Referencias
         tvCorreoPerfil = findViewById(R.id.tvCorreoPerfil);
-        tvCorreoPerfil.setText(emailRecibido);
         tvContrasenaPerfil = findViewById(R.id.tvContrasenaPerfil);
-        tvContrasenaPerfil.setText(contrasenaRecibido);
         tvNombrePerfil = findViewById(R.id.tvNombrePefil);
+
+        // Mostrar datos
+        tvCorreoPerfil.setText(emailRecibido);
+        tvContrasenaPerfil.setText(contrasenaRecibido);
         tvNombrePerfil.setText(nombreRecibido);
 
-        //Funcion para el boton de volver al menu de inicio que esta en el perfil
-        Button btnPerfilVolver= findViewById(R.id.btnPerfilVolver);
+        // Botón para volver al menú principal
+        Button btnPerfilVolver = findViewById(R.id.btnPerfilVolver);
         btnPerfilVolver.setOnClickListener(v -> {
-            finish();
-            //Trancision personalizada
-            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+            finishWithAnimation();
         });
+
+        //Manejar el botón físico "Atrás"
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                finishWithAnimation();
+            }
+        });
+    }
+
+    //Método centralizado para aplicar animación al cerrar
+    private void finishWithAnimation() {
+        finish();
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 }

@@ -81,6 +81,8 @@ public class LoginActivity extends AppCompatActivity {
 
             // Cerrar la pantalla de login para que no vuelva atrás con "Back"
             finish();
+            //Trancision personalizada
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
         } else {
             Toast.makeText(this, "Credenciales incorrectas", Toast.LENGTH_SHORT).show();
         }

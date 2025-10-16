@@ -1,5 +1,6 @@
 package com.devst.app;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -22,7 +23,7 @@ public class ConfigActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbarConfig);
         setSupportActionBar(toolbar);
 
-        //Refrencias
+        //Referencias
         Button btnConfiguracionWifi = findViewById(R.id.btnConfiguracionWifi);
 
         if (getSupportActionBar() != null) {
@@ -40,29 +41,28 @@ public class ConfigActivity extends AppCompatActivity {
             getSupportActionBar().setHomeAsUpIndicator(upArrow);
         }
 
-        //Acción del botón atrás
-        toolbar.setNavigationOnClickListener(v -> {
-            // Cierra la Activity manualmente
-            finish();
-            //Trancision personalizada
-            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-        });
+        //Acción del botón "Atrás" en la Toolbar
+        toolbar.setNavigationOnClickListener(v -> finishWithAnimation());
 
-        //Evento implicito para abrir Configuracion "Wifi"
+        //Evento implícito para abrir Configuración "Wi-Fi"
         btnConfiguracionWifi.setOnClickListener(v -> {
             Intent wifiSettings = new Intent(Settings.ACTION_WIFI_SETTINGS);
             startActivity(wifiSettings);
-            //Animación de entrada/salida
             overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+        });
+
+        //Capturar el botón físico "Atrás"
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                finishWithAnimation();
+            }
         });
     }
 
-    //Agrega la animación al volver atrás
-    @Override
-    public void onBackPressed() {
-        // Cierra la Activity
+    //Método con animación
+    private void finishWithAnimation() {
         finish();
-        //Trancision personalizada
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 }

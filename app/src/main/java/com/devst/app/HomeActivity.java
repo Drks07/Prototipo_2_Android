@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.OnBackPressedCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
@@ -22,27 +23,26 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 
-
 public class HomeActivity extends AppCompatActivity {
 
-    // Variables
+    //Variables
     private String emailUsuario, contrasenaUsuario, nombreUsuario = "";
     private TextView tvBienvenida, tvContrasenaHome, tvNombreHome;
 
-    //VARIABLES PARA LA CAMARA
+    //Variables para la cámara
     private Button btnLinterna;
     private CameraManager camara;
     private String camaraID = null;
     private boolean luz = false;
 
-    // Activity Result (para recibir datos de PerfilActivity)
+    //Activity Result (para recibir datos de PerfilActivity)
     private final ActivityResultLauncher<Intent> editarPerfilLauncher =
-            registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result ->{
-                if (result.getResultCode() == RESULT_OK && result.getData() != null){
+            registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+                if (result.getResultCode() == RESULT_OK && result.getData() != null) {
                     String nombre = result.getData().getStringExtra("nombre_editado");
                     String contra = result.getData().getStringExtra("contraseña_editada");
                     String user = result.getData().getStringExtra("username_editado");
-                    if (nombre != null && contra != null && user != null){
+                    if (nombre != null && contra != null && user != null) {
                         tvBienvenida.setText("Hola, " + nombre);
                         tvContrasenaHome.setText(contra);
                         tvNombreHome.setText(user);
@@ -50,12 +50,11 @@ public class HomeActivity extends AppCompatActivity {
                 }
             });
 
-    // Launcher para pedir permiso de cámara en tiempo de ejecución
+    //Launcher para pedir permiso de cámara
     private final ActivityResultLauncher<String> permisoCamaraLauncher =
             registerForActivityResult(new ActivityResultContracts.RequestPermission(), granted -> {
                 if (granted) {
-                    alternarluz(); // si conceden permiso, intentamos prender/apagar
-
+                    alternarluz();
                 } else {
                     Toast.makeText(this, "Permiso de cámara denegado", Toast.LENGTH_SHORT).show();
                 }
@@ -84,51 +83,50 @@ public class HomeActivity extends AppCompatActivity {
         Button btnVerContactos = findViewById(R.id.btnVerContactos);
         Button btnConfiguracionInterna = findViewById(R.id.btnConfiguracionInterna);
 
-        // Recibir dato del Login
+        //Recibir datos del Login
         emailUsuario = getIntent().getStringExtra("email_usuario");
         contrasenaUsuario = getIntent().getStringExtra("contrasena_usuario");
         nombreUsuario = getIntent().getStringExtra("nombre_usuario");
-        if (emailUsuario == null ) emailUsuario = ""; //if mas corto
+        if (emailUsuario == null) emailUsuario = "";
         tvBienvenida.setText("Bienvenido: " + emailUsuario);
         tvContrasenaHome.setText(contrasenaUsuario);
         tvNombreHome.setText(nombreUsuario);
 
-
-        //Evento Explicito iniciar vista perfil
-        btnIrPerfil.setOnClickListener(View -> { //puede ir solo la v envez de View
-            Intent perfil = new Intent(HomeActivity.this, PerfilActivity.class); //Donde estoy y hacia donde quiero ir
+        //Evento explícito → PerfilActivity
+        btnIrPerfil.setOnClickListener(v -> {
+            Intent perfil = new Intent(HomeActivity.this, PerfilActivity.class);
             perfil.putExtra("email_usuario", emailUsuario);
             perfil.putExtra("contrasena_usuario", contrasenaUsuario);
             perfil.putExtra("nombre_usuario", nombreUsuario);
             editarPerfilLauncher.launch(perfil);
-            //Trancision Personalizada
             overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
         });
 
-        // Evento: Intent Explicito para inicializar ContactoActivity
+        //Evento explícito → ContactoActivity
         btnVerContactos.setOnClickListener(v -> {
-            Intent Contacto = new Intent(HomeActivity.this, ContactoActivity.class);
-            startActivity(Contacto);
+            Intent contacto = new Intent(HomeActivity.this, ContactoActivity.class);
+            startActivity(contacto);
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
         });
 
-        // Evento: Intent implícito → abrir web
+        //Evento implícito → abrir web
         btnAbrirWeb.setOnClickListener(v -> {
             Uri uri = Uri.parse("https://git-scm.com/");
             Intent viewWeb = new Intent(Intent.ACTION_VIEW, uri);
             startActivity(viewWeb);
         });
 
-        // Evento: Intent implícito → enviar correo
+        //Evento implícito → enviar correo
         btnEnviarCorreo.setOnClickListener(v -> {
             Intent email = new Intent(Intent.ACTION_SENDTO);
-            email.setData(Uri.parse("mailto:")); // Solo apps de correo
+            email.setData(Uri.parse("mailto:"));
             email.putExtra(Intent.EXTRA_EMAIL, new String[]{emailUsuario});
             email.putExtra(Intent.EXTRA_SUBJECT, "Prueba desde la app");
-            email.putExtra(Intent.EXTRA_TEXT, "Hola, esto es un intento de correo. Actividad 15% Felipe Mellado, Daniel Quiroz.");
+            email.putExtra(Intent.EXTRA_TEXT, "Hola, esto es un intento de correo.");
             startActivity(Intent.createChooser(email, "Enviar correo con:"));
         });
 
-        // Evento: Intent implícito → compartir texto
+        //Evento implícito → compartir texto
         btnCompartir.setOnClickListener(v -> {
             Intent share = new Intent(Intent.ACTION_SEND);
             share.setType("text/plain");
@@ -136,7 +134,7 @@ public class HomeActivity extends AppCompatActivity {
             startActivity(Intent.createChooser(share, "Compartir usando:"));
         });
 
-        //Evento implicito para ver Ubicacion (Abre la App Maps)
+        //Evento implícito → ver ubicación (Maps)
         btnUbicacion.setOnClickListener(v -> {
             Uri ubicacion = Uri.parse("geo:-33.452922,-70.662307?q=" + Uri.encode("Vergara 165, 8370014 Santiago, Región Metropolitana"));
             Intent mapIntent = new Intent(Intent.ACTION_VIEW, ubicacion);
@@ -144,18 +142,15 @@ public class HomeActivity extends AppCompatActivity {
             startActivity(mapIntent);
         });
 
-        //Evento explicito para la configuracion interna
+        //Evento explícito → ConfigActivity
         btnConfiguracionInterna.setOnClickListener(v -> {
             Intent configuracionInterna = new Intent(HomeActivity.this, ConfigActivity.class);
             startActivity(configuracionInterna);
-            //Transición personalizada
             overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
         });
 
-        //Linterna Inicializamos la camara
-
+        //Linterna
         camara = (CameraManager) getSystemService(CAMERA_SERVICE);
-
         try {
             for (String id : camara.getCameraIdList()) {
                 CameraCharacteristics cc = camara.getCameraCharacteristics(id);
@@ -164,7 +159,7 @@ public class HomeActivity extends AppCompatActivity {
                 if (Boolean.TRUE.equals(disponibleFlash)
                         && lensFacing != null
                         && lensFacing == CameraCharacteristics.LENS_FACING_BACK) {
-                    camaraID = id; // prioriza la cámara trasera con flash
+                    camaraID = id;
                     break;
                 }
             }
@@ -177,7 +172,6 @@ public class HomeActivity extends AppCompatActivity {
                 Toast.makeText(this, "Este dispositivo no tiene flash disponible", Toast.LENGTH_SHORT).show();
                 return;
             }
-            // Verifica permiso en tiempo de ejecución
             boolean camGranted = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
                     == PackageManager.PERMISSION_GRANTED;
 
@@ -188,10 +182,24 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        btnCamara.setOnClickListener(v ->
-                startActivity(new Intent(this, CamaraActivity.class))
-        );
+        btnCamara.setOnClickListener(v -> {
+            startActivity(new Intent(this, CamaraActivity.class));
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+        });
 
+        //Capturar el botón físico "Atrás"
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                finishWithAnimation();
+            }
+        });
+    }
+
+    //Método que centraliza el cierre con animación
+    private void finishWithAnimation() {
+        finish();
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 
     //Linterna
@@ -205,7 +213,6 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
-
     @Override
     protected void onPause() {
         super.onPause();
@@ -218,18 +225,7 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
-
-
-
-
-
-
-
-
-
-
-
-    // ===== Menú en HomeActivity =====
+    // Menú
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);
@@ -240,17 +236,15 @@ public class HomeActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_perfil) {
-            // Ir al perfil (explícito)
             Intent i = new Intent(this, PerfilActivity.class);
             i.putExtra("email_usuario", emailUsuario);
             editarPerfilLauncher.launch(i);
             return true;
         } else if (id == R.id.action_web) {
-            // Abrir web (implícito)
             startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://developer.android.com")));
             return true;
         } else if (id == R.id.action_salir) {
-            finish(); // Cierra HomeActivity
+            finishWithAnimation(); // ✅ Aplica animación también al salir desde el menú
             return true;
         }
         return super.onOptionsItemSelected(item);

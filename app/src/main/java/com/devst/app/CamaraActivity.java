@@ -9,15 +9,13 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import java.io.File;
 import java.io.IOException;
@@ -54,6 +52,14 @@ public class CamaraActivity extends AppCompatActivity {
         imagenPrevia = findViewById(R.id.imgPreview);
 
         btnTomarFoto.setOnClickListener(v -> checkPermisoYTomar());
+
+        //Capturar el botón "Atrás" del sistema
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                finishWithAnimation(); // Cierra con animación
+            }
+        });
     }
 
     private void checkPermisoYTomar() {
@@ -79,5 +85,11 @@ public class CamaraActivity extends AppCompatActivity {
         String nombre = "IMG_" + timeStamp + "_";
         File dir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         return File.createTempFile(nombre, ".jpg", dir);
+    }
+
+    //Método centralizado con transición de salida
+    private void finishWithAnimation() {
+        finish();
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 }

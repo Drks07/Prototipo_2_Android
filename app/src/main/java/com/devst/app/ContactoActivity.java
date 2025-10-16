@@ -8,6 +8,7 @@ import android.provider.ContactsContract;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,7 +24,7 @@ public class ContactoActivity extends AppCompatActivity {
                     Cursor cursor = getContentResolver().query(contactUri, null, null, null, null);
 
                     if (cursor != null && cursor.moveToFirst()) {
-                        // Obtener nombre y número directamente
+                        // Obtener nombre y número
                         String nombre = cursor.getString(
                                 cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
                         String numero = cursor.getString(
@@ -55,12 +56,24 @@ public class ContactoActivity extends AppCompatActivity {
             pickContactLauncher.launch(intent);
         });
 
-        //Funcion para el boton de volver al menu de inicio que esta en la vista de contacto
+        // Botón para volver al menú principal
         Button btnContactoVolver = findViewById(R.id.btnContactoVolver);
         btnContactoVolver.setOnClickListener(v -> {
-            finish();
+            finishWithAnimation();
+        });
+
+        //Manejar el botón físico "Atrás" con animación
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                finishWithAnimation();
+            }
         });
     }
+
+    //Método centralizado para cerrar con animación
+    private void finishWithAnimation() {
+        finish();
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+    }
 }
-
-
