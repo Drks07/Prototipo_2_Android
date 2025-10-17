@@ -35,6 +35,11 @@ En este proyecto se implementaron en total 8 intents (5 eventos implicitos y 3 e
 | <img src="https://github.com/user-attachments/assets/b5b4ec8a-091b-4f20-a180-dea994770f33" width="250"/> | <img src="https://github.com/user-attachments/assets/a5834a26-93f8-4faa-b118-df5caa7c77c7" width="250"/> |
 <br>
 
+# 📦 Descargar APK Debug
+Para descargar el APK entra al siguiente link de OneDrive.
+
+https://alumnossantotomas-my.sharepoint.com/:f:/g/personal/f_mellado8_alumnos_santotomas_cl/EpoJySo1QNtCqkZEcc9ri_oBreRwCdo__QPGt1u2fVYCoQ?e=gCz1VN
+
 
 
 
