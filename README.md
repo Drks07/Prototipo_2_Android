@@ -23,20 +23,18 @@ En este proyecto se implementaron en total 8 intents (5 eventos implicitos y 3 e
 2. FormActivity → ConfirmActivity (con resultado) | (Felipe Mellado)
 3. Abrir Activity con animación personalizada | (Daniel Quiroz)
 
-# 📸 Captura de Pantalla
+# 📸 Capturas de Pantalla (Vistas)
 
-HomeActivity
+| 1. **HomeActivity** | 2. **PerfilActivity** |
+|--------------|----------------|
+| <img src="https://github.com/user-attachments/assets/f59bc079-a525-4ac2-8389-3248ead59428" width="250"/> | <img src="https://github.com/user-attachments/assets/39f22af9-085d-471a-b96e-bd22ef373db5" width="250"/> |
+<br>
 
-<img width="491" height="1027" alt="image" src="https://github.com/user-attachments/assets/f59bc079-a525-4ac2-8389-3248ead59428" />
+| 3. **ContactoActivity** | 4. **FormActivity** |
+|--------------|----------------|
+| <img src="https://github.com/user-attachments/assets/b5b4ec8a-091b-4f20-a180-dea994770f33" width="250"/> | <img src="https://github.com/user-attachments/assets/a5834a26-93f8-4faa-b118-df5caa7c77c7" width="250"/> |
+<br>
 
-PerfilActivity
 
-<img width="491" height="1137" alt="image" src="https://github.com/user-attachments/assets/39f22af9-085d-471a-b96e-bd22ef373db5" />
 
-Datos de Contacto
 
-<img width="488" height="1137" alt="image" src="https://github.com/user-attachments/assets/b5b4ec8a-091b-4f20-a180-dea994770f33" />
-
-Formulario
-
-<img width="498" height="1130" alt="image" src="https://github.com/user-attachments/assets/a5834a26-93f8-4faa-b118-df5caa7c77c7" />
